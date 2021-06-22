@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Validator;
 
 class ProductosController extends Controller
 {
@@ -36,7 +37,22 @@ class ProductosController extends Controller
      */
     public function store(Request $request)
     {
-        dd("hola");
+        $validator= Validator::make($request->all(),[
+            'nombre'=>'required|max:255|min:1',
+            'descripcion'=>'required|max:255|min:1|',
+            'stock'=>'required|max:255|min:1|numeric',
+            'precio'=>'required|max:255|min:1|numeric',
+            'imagen'=>'required|max:255|min:1|'       
+        ]);
+        if($validator->fails()){
+            return back()
+                ->withInput()
+                ->with('errorInsert','Favor de llenar todos los campos')
+                ->withErrors('Favor de llenar los campos');
+            
+        }else{
+            dd("Producto Guardado");
+        }
     }
 
     /**
