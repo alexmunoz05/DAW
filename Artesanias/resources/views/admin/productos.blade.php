@@ -31,7 +31,7 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <form action="/admin/productos" method="POST">
+            <form action="/admin/productos" method="POST" enctype="multipart/form-data">
                 @if($message= Session::get('errorInsert'))
                   <div class="alert alert-danger alert-dismissable fade show col-12" role="alert">
                     <h5>Error:</h5>
@@ -62,7 +62,11 @@
                     </div>
                     <div class="form-group">
                         <label for="imagen">Imagen</label>
-                        <input type="text" class="form-control form-control-border" id="imagen" name="imagen" value="{{ @old('imagen') }}">
+                        <input type="file" class="form-control form-control-border" id="imagen" name="imagen" value="{{ @old('imagen') }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="tags">Tags</label>
+                        <input type="text" class="form-control form-control-border" id="tags" name="tags" value="{{ @old('tags') }}">
                     </div>
                 </div>
                 <div class="modal-footer justify-content-between">

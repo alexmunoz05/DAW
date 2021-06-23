@@ -17,9 +17,11 @@ class ProductsMigration extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('description');
-            $table->integer('stock');
+            $table->double('stock');
             $table->decimal('price');
             $table->string('image');
+            $table->string('tags');
+            $table->string('slug');
             $table->timestamps();//OBLIGATORIOS
             
         });
